@@ -1,7 +1,7 @@
 # <center>TicTacToe-Minimax</center>
 
 This repository contains the minimax algorithm applied on a game of TicTacToe. 
-## Minimax :
+## [Minimax](https://en.wikipedia.org/wiki/Minimax):
 
     The Minimax algorithm is an algorithm used in game theory to minimize the
     maximum possible loss in a given scenario (source : Wikipedia)
