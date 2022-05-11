@@ -37,7 +37,7 @@ def DrawO(posX, posY):
 
 while running:
     event = pg.event.wait()
-    if event.type == pg.QUIT or isWon:
+    if event.type == pg.QUIT:
         break
     else:
         pg.display.update()
@@ -102,6 +102,9 @@ while running:
                 isWon=True
             if board[0][2] == board[1][1] == board[2][0] != " ":
                 isWon=True
+            
+            # if isWon:
+                
 
 for i in range(len(board)):
     for j in range(len(board[i])):
