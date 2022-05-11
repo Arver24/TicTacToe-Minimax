@@ -124,7 +124,7 @@ while running:
                 isWon=True
                 pg.draw.line(frame,red,(550,50),(50,550))
             
-                
+            # Win line is currently hardcoded, will have to find a mathematical relation to replace the hardcode
 
 for i in range(len(board)):
     for j in range(len(board[i])):
