@@ -2,6 +2,11 @@ import random
 
 import pygame as pg
 import numpy as np
+from zmq import NULL
+
+
+# assuming X to be human and O to be computer and human plays first
+
 
 pg.init()
 w = 600
@@ -11,7 +16,7 @@ white = (255, 255, 255)
 red=(255,0,0)
 players = ["X", "O"]
 board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
-currPlayer = players[np.random.randint(0, 2)]
+currPlayer = players[0]       # players[np.random.randint(0, 2)]
 running = True
 isWon=False
 print("starting with ", currPlayer)
@@ -57,7 +62,8 @@ while running:
 
         if not isWon:
             # only detect mouse click if game is not over
-
+            i=np.random.randint(0,3)
+            j=np.random.randint(0,3)
             if event.type == pg.MOUSEBUTTONUP:
                 mouseX = pg.mouse.get_pos()[0]
                 mouseY = pg.mouse.get_pos()[1]
@@ -66,6 +72,7 @@ while running:
 
                 newMouseX = int(mouseX / 200)
                 newMouseY = int(mouseY / 200)
+                
                 if board[newMouseY][newMouseX] == " ":
 
                     # X moves
@@ -77,11 +84,14 @@ while running:
                     # O moves
 
                     else:
-                        board[newMouseY][newMouseX] = "O"
-                        currPlayer = "X"
-                        DrawO(newMouseX, newMouseY)
-                else:
-                    print("Invalid Move")
+                        print("Computer's Turn")
+
+            if (board[i][j]==" ") and currPlayer=="O":
+                            board[i][j] = "O"
+                            currPlayer = "X"
+                            DrawO(j, i)
+            else:
+                print("Human's turn")
 
             # winning conditions
 
@@ -126,7 +136,19 @@ while running:
             
             # Win line is currently hardcoded, will have to find a mathematical relation to replace the hardcode
 
+
+            for i in range(len(board)):
+                for j in range(len(board[i])):
+                    if not isWon and (board[0].count("X")+board[1].count("X")+board[2].count("X"))==5:
+                        
+                        print("!!!  Game Draw  !!!")
+                        pg.display.update()
+                        pg.time.delay(100)
+                        running=False
+                        
+
 for i in range(len(board)):
     for j in range(len(board[i])):
         print(board[i][j], end="")
+        
     print()
